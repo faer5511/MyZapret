@@ -1,0 +1,96 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+dist/
+build/
+*.egg-info/
+*.egg
+
+# PyInstaller
+*.spec
+*.manifest
+Zapret.spec
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Логи и временные файлы
+*.log
+*.tmp
+*.temp
+temp/
+logs/
+
+# Сборка
+Zapret.exe
+Zapret.spec
+
+# Пользовательские данные
+*.backup
+*.bak
+*.cache
+
+# Secrets
+*.secret
+*.key
+*.env
+config.json
+
+# Windows
+Thumbs.db
+desktop.ini
+*.exe
+
+# Web cache
+web/.cache/
+*.pyc
+
+# Backup
+*.zip
+*.rar
+*.7z
+
+# Специфичные для bat_files
+bat_files/lists/ipset-all.txt
+bat_files/lists/ipset-exclude-user.txt
+bat_files/lists/ipset-exclude.txt
+bat_files/lists/list-exclude-user.txt
+bat_files/lists/list-exclude.txt
+bat_files/lists/list-general-user.txt
+bat_files/lists/list-general.txt
+bat_files/lists/list-google.txt
+
+# Utils (сохраняем структуру но игнорируем содержимое)
+bat_files/utils/check_updates.enabled
+bat_files/utils/targets.txt
+bat_files/utils/*.log
+bat_files/utils/*.tmp
+
+# Игнорируем временные файлы Telegram прокси
+tg_proxy/*.tmp
+tg_proxy/*.log
+tg_proxy/config.json
+
+# Игнорируем локальные настройки веба
+web/.cache/
+web/*.local
+web/modules/*.local
+
+# Основные бинарники (если есть)
+*.exe
+*.dll
+*.so
+*.dylib

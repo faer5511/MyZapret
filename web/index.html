@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Zapret backit</title>
+    <link rel="icon" type="image/x-icon" href="logo.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="/eel.js"></script>
+</head>
+<body>
+    <div class="loader" id="loader">
+        <div class="loader-content">
+            <div class="loader-ring"><div></div><div></div><div></div><div></div></div>
+            <div class="loader-shield"><img src="logo.ico" alt="" id="loaderLogo"></div>
+            <div class="loader-title">ZAPRET</div>
+            <div class="loader-text" id="loaderText">Инициализация защиты...</div>
+        </div>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+
+    <div class="app" id="app">
+        <div class="top-bar">
+            <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i><span>МЕНЮ</span></button>
+            <div class="top-logo"><i class="fas fa-shield-alt"></i><span>ZAPRET</span></div>
+            <div class="top-actions">
+                <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+                <div class="status-dot" id="headerStatus"></div>
+            </div>
+        </div>
+
+        <div class="menu-overlay" id="menuOverlay">
+            <div class="menu-panel">
+                <div class="menu-header">
+                    <div class="menu-header-icon"><i class="fas fa-shield-haltered"></i></div>
+                    <h3>Управление</h3>
+                    <button class="menu-close" id="menuClose"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="menu-stats">
+                    <div class="stat-card"><span class="stat-label">Активный профиль</span><span class="stat-value" id="menuProfile">—</span></div>
+                    <div class="stat-card"><span class="stat-label">Статус</span><span class="stat-value" id="menuStatus"><span class="status-badge offline">Остановлен</span></span></div>
+                </div>
+                <div class="menu-search"><i class="fas fa-search"></i><input type="text" id="profileSearch" placeholder="Поиск профилей..."></div>
+                <div class="menu-section">
+                    <div class="section-header"><i class="fas fa-layer-group"></i><span>Доступные профили</span><button class="refresh-btn" id="refreshProfilesBtn"><i class="fas fa-sync-alt"></i></button></div>
+                    <div class="profiles-list" id="profilesList"></div>
+                </div>
+                <div class="menu-footer">
+                    <button class="action-btn" id="clearLogsBtn"><i class="fas fa-trash-alt"></i><span>Очистить лог</span></button>
+                    <button class="action-btn" id="exportLogsBtn"><i class="fas fa-file-export"></i><span>Экспорт логов</span></button>
+                    <button class="action-btn" id="backupProfilesBtn"><i class="fas fa-download"></i><span>Экспорт профилей</span></button>
+                    <button class="action-btn" id="restoreProfilesBtn"><i class="fas fa-upload"></i><span>Импорт профилей</span></button>
+                    <button class="action-btn secondary" id="updateZapretBtn"><i class="fas fa-arrow-up"></i><span>Обновить Zapret</span></button>
+                    <button class="action-btn danger" id="resetSettingsBtn"><i class="fas fa-trash"></i><span>Сбросить настройки</span></button>
+                    <div class="version-info"><span>Версия</span><strong id="zapretVersion">v3.12a</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content" id="mainContent">
+            <canvas id="particlesCanvas" class="particles-canvas"></canvas>
+
+            <div class="hero">
+                <div class="hero-icon animated-shield">
+                    <div class="shield-glow"></div>
+                    <img src="logo.png" alt="Zapret Logo" id="mainLogo" class="shield-icon-animated">
+                </div>
+                <h1 class="hero-title">ZAPRET</h1>
+                <p class="hero-subtitle">Обход блокировок YouTube, Discord и Telegram</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card-glass">
+                    <div class="stat-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <div class="stat-info"><span class="stat-title">Скорость</span><span class="stat-value-large" id="speedValue">0 Kbps</span></div>
+                    <canvas class="stat-chart" id="speedChart" width="60" height="40"></canvas>
+                </div>
+                <div class="stat-card-glass">
+                    <div class="stat-icon"><i class="fas fa-database"></i></div>
+                    <div class="stat-info"><span class="stat-title">Трафик</span><span class="stat-value-large" id="trafficValue">0 MB</span></div>
+                    <div class="traffic-progress"><div class="progress-bar" id="trafficProgress" style="width: 0%"></div></div>
+                </div>
+                <div class="stat-card-glass">
+                    <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                    <div class="stat-info"><span class="stat-title">Активно</span><span class="stat-value-large" id="uptimeValue">00:00:00</span></div>
+                </div>
+                <div class="stat-card-glass">
+                    <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="stat-info"><span class="stat-title">Пинг</span><span class="stat-value-large" id="pingValue">0 ms</span></div>
+                    <canvas id="pingChart" width="60" height="40" class="stat-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="stats-session" id="sessionStats">
+                <div class="session-title"><i class="fas fa-chart-bar"></i> Статистика сессии</div>
+                <div class="session-grid">
+                    <div class="session-item"><span class="session-label">Трафик сегодня:</span><span class="session-value" id="todayTraffic">0 MB</span></div>
+                    <div class="session-item"><span class="session-label">Время сегодня:</span><span class="session-value" id="todayTime">00:00:00</span></div>
+                    <div class="session-item"><span class="session-label">Запусков:</span><span class="session-value" id="launchCount">0</span></div>
+                    <div class="session-item"><span class="session-label">Ср. пинг:</span><span class="session-value" id="avgPing">0 ms</span></div>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <div class="profile-card-header"><i class="fas fa-user-shield"></i><span>Текущий профиль</span><button class="favorite-btn" id="favoriteBtn"><i class="far fa-star"></i></button></div>
+                <div class="profile-name" id="currentProfile">Загрузка...</div>
+                <div class="profile-nav">
+                    <button class="nav-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                    <div class="profile-dots" id="profileDots"></div>
+                    <button class="nav-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="shortcut-hint"><i class="fas fa-keyboard"></i> Ctrl+Shift+← → | 1-9 выбор профиля</div>
+            </div>
+
+            <button class="connect-btn" id="connectBtn">
+                <div class="btn-glow"></div>
+                <i class="fas fa-plug"></i>
+                <span>ПОДКЛЮЧИТЬ</span>
+            </button>
+
+            <div class="status-card">
+                <div class="status-indicator"><div class="indicator-dot" id="indicator"></div><div class="indicator-pulse" id="indicatorPulse"></div></div>
+                <span class="status-text" id="statusText">Отключено</span>
+            </div>
+
+            <div class="log-section">
+                <div class="log-header">
+                    <div class="log-tabs">
+                        <button class="log-tab active" data-tab="events"><i class="fas fa-terminal"></i> События</button>
+                        <button class="log-tab" data-tab="system"><i class="fas fa-microchip"></i> Система</button>
+                    </div>
+                    <div class="log-actions">
+                        <button class="log-copy" id="copyLogBtn" title="Копировать лог"><i class="fas fa-copy"></i></button>
+                        <button class="log-toggle" id="logToggle"><i class="fas fa-chevron-up"></i></button>
+                    </div>
+                </div>
+                <div class="log-content" id="logContent">
+                    <div class="log-empty"><i class="fas fa-inbox"></i><p>Лог событий пуст</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="waveCanvas" class="wave-canvas"></canvas>
+    <div class="shortcuts-help" id="shortcutsHelp">
+        <span><i class="fas fa-keyboard"></i> Горячие клавиши: Ctrl+Shift+P - Подключить | Ctrl+Shift+L - Очистить лог | 1-9 - выбор профиля</span>
+    </div>
+
+    <script src="modules/storage.js"></script>
+    <script src="modules/animations.js"></script>
+    <script src="modules/ui.js"></script>
+    <script src="modules/network.js"></script>
+    <script src="modules/shortcuts.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
