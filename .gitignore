@@ -36,7 +36,6 @@ logs/
 
 # Сборка
 Zapret.exe
-Zapret.spec
 
 # Пользовательские данные
 *.backup
@@ -52,7 +51,6 @@ config.json
 # Windows
 Thumbs.db
 desktop.ini
-*.exe
 
 # Web cache
 web/.cache/
@@ -63,7 +61,13 @@ web/.cache/
 *.rar
 *.7z
 
-# Специфичные для bat_files
+# НЕ игнорировать файлы лицензий
+!LICENSE
+!bat_files/LICENSE.zapret
+!bat_files/LICENSE.flowseal
+!tg_proxy/LICENSE.tgwsproxy
+
+# Специфичные для bat_files (но НЕ лицензии)
 bat_files/lists/ipset-all.txt
 bat_files/lists/ipset-exclude-user.txt
 bat_files/lists/ipset-exclude.txt
@@ -72,8 +76,6 @@ bat_files/lists/list-exclude.txt
 bat_files/lists/list-general-user.txt
 bat_files/lists/list-general.txt
 bat_files/lists/list-google.txt
-
-# Utils (сохраняем структуру но игнорируем содержимое)
 bat_files/utils/check_updates.enabled
 bat_files/utils/targets.txt
 bat_files/utils/*.log
@@ -88,9 +90,3 @@ tg_proxy/config.json
 web/.cache/
 web/*.local
 web/modules/*.local
-
-# Основные бинарники (если есть)
-*.exe
-*.dll
-*.so
-*.dylib

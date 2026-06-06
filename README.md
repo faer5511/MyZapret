@@ -261,6 +261,12 @@ def update_zapret() -> bool         # Обновление zapret
 Проект распространяется под лицензией MIT. Подробности в файле LICENSE.
 
 🙏 Благодарности
+
+- **[bol-van](https://github.com/bol-van/zapret)** - за создание zapret (ядро обхода DPI)
+- **[TgWsProxy](https://github.com/Flowseal/tg-ws-proxy)** - за Telegram MTProto прокси (лицензия MIT)
+- **[Flowseal](https://github.com/Flowseal/zapret-discord-youtube)** - за готовые профили ALT1-ALT12
+- **[EEL](https://github.com/python-eel/Eel)** - за Python-JS мост
+- **[Font Awesome](https://fontawesome.com/)** - за иконки
 bol-van - за создание zapret (ядро обхода DPI)
 
 TgWsProxy - за Telegram MTProto прокси
