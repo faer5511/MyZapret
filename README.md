@@ -3,12 +3,13 @@
 **Обход блокировок YouTube, Discord и Telegram**
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-4.12a-red.svg)](https://github.com/yourusername/MyZapret)
+[![Version](https://img.shields.io/badge/Version-4.12a-red.svg)](https://github.com/faer5511/MyZapret)
 [![Python](https://img.shields.io/badge/Python-3.10+-green.svg)](https://python.org)
 
 ## 📋 Описание
 
 **Zapret Proxy** - это графическое приложение для обхода DPI (Deep Packet Inspection) блокировок популярных сервисов:
+
 - 🎬 **YouTube** - просмотр видео без замедлений
 - 💬 **Discord** - голосовые каналы и обмен сообщениями
 - ✈️ **Telegram** - работа через MTProto прокси
@@ -62,22 +63,16 @@
 ## 📥 Установка
 
 ### Способ 1: Готовый EXE файл
-1. Скачайте последний релиз из раздела [Releases](https://github.com/yourusername/MyZapret/releases)
+1. Скачайте последний релиз из раздела [Releases](https://github.com/faer5511/MyZapret/releases)
 2. Распакуйте архив в любую папку
 3. Запустите `Zapret.exe` **от имени администратора**
 
 ### Способ 2: Запуск из исходников
 ```bash
-# Клонирование репозитория
-git clone https://github.com/yourusername/MyZapret.git
+git clone https://github.com/faer5511/MyZapret.git
 cd MyZapret
-
-# Установка зависимостей
 pip install eel pyinstaller bottle
-
-# Запуск в режиме разработки
 python main.py
-
 
 Способ 3: Сборка EXE самостоятельно
 
@@ -232,17 +227,48 @@ def stop_connection() -> dict       # Остановка сервисов
 def get_tg_proxy_link() -> str      # Ссылка для Telegram
 def update_zapret() -> bool         # Обновление zapret
 
+📜 Лицензии сторонних компонентов
+Данный проект является графической оболочкой и использует следующие сторонние компоненты:
+
+Компонент zapret (ядро обхода DPI)
+Автор: bol-van
+
+Репозиторий: https://github.com/bol-van/zapret
+
+Лицензия: MIT
+
+Файл лицензии: bat_files/LICENSE.zapret
+
+Компонент TgWsProxy (Telegram MTProto прокси)
+Автор: TgWsProxy
+
+Репозиторий: https://github.com/TgWsProxy/TgWsProxy
+
+Лицензия: MIT
+
+Файл лицензии: tg_proxy/LICENSE.tgwsproxy
+
+Конфигурационные файлы (профили ALT1-ALT12)
+Автор: Flowseal
+
+Репозиторий: https://github.com/Flowseal/zapret-discord-youtube
+
+Лицензия: MIT
+
+Файл лицензии: bat_files/LICENSE.flowseal
 
 📝 Лицензия
 Проект распространяется под лицензией MIT. Подробности в файле LICENSE.
 
 🙏 Благодарности
-zapret - DPI bypass
+bol-van - за создание zapret (ядро обхода DPI)
 
-TgWsProxy - Telegram MTProto proxy
+TgWsProxy - за Telegram MTProto прокси
 
-EEL - Python-JS мост
+Flowseal - за готовые профили ALT1-ALT12
 
-Font Awesome - Иконки
+EEL - за Python-JS мост
+
+Font Awesome - за иконки
 
 <div align="center"> <sub>Built with ❤️ | Thanks to bol-van, TgWsProxy and Flowseal</sub> </div> ```
